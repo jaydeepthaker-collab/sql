@@ -47,8 +47,11 @@ There are several tools online you can use, I'd recommend [Draw.io](https://www.
 
 **HINT:** You do not need to create any data for this prompt. This is a conceptual model only. 
 
+'''My answeer: Please refer to assignment_2_prompt1 for the ERD Chart'''
+
 #### Prompt 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
+'''' My answer: Please refer to assignment_2_prompt2 for the ERD Chart'''
 
 #### Prompt 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2? 
@@ -56,7 +59,26 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+My answer...
+
+Arhitecture 1: Overwrite (Type 1)
+
+Table: CUSTOMER
+
+Columns: customer_id (PK), cust_first_name,cust_middle_name,cust_last_name, customer_address
+
+Description: In this model, the address is a single attribute. When a customer moves, the existing row is updated. This is simple but historical data is lost.
+Existint Prompt 1 and Prompt 2 ERD charts in my answer have this architecture
+
+Architecture 2: Retain History (Type 2)
+
+Table: CUSTOMER_ADDRESS_HISTORY
+Columns: address_id (PK), customer_id (FK), customer_address, effective_date, end_date, is_current_flag
+
+Table: CUSTOMER
+Columns: customer_id (PK), cust_first_name,cust_middle_name,cust_last_name
+
+Description: In this model, a new row is inserted for every address change. We use dates and a flag to track which address was active at any point in time.
 ```
 
 ***
